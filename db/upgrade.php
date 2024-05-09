@@ -1053,7 +1053,8 @@ function xmldb_local_recompletion_upgrade($oldversion) {
             FROM {local_recompletion_sst} t
             JOIN {scorm_element} e ON e.element = t.element
             LEFT JOIN {scorm} s ON s.id = t.scormid
-            JOIN {local_recompletion_sa} a ON (t.userid = a.userid AND t.scormid = a.scormid AND a.attempt = t.attempt)";
+            JOIN {local_recompletion_sa} a ON (t.userid = a.userid AND t.scormid = a.scormid AND a.attempt = t.attempt)
+           WHERE s.course is not null";
         $DB->execute($sql);
         // Remove old table.
         $table = new xmldb_table('local_recompletion_sst');
