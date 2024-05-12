@@ -1045,7 +1045,7 @@ function xmldb_local_recompletion_upgrade($oldversion) {
         }
         // Fill backup attempt table.
         $sql = "INSERT INTO {local_recompletion_sa} (userid, scormid, attempt, courseid)
-        SELECT userid, scormid, attempt, course FROM {local_recompletion_sst} sst GROUP BY userid,scormid,attempt";
+        SELECT userid, scormid, attempt, course FROM {local_recompletion_sst} sst GROUP BY userid,scormid,attempt,course";
         $DB->execute($sql);
         // Fill backup value table.
         $sql = "INSERT INTO {local_recompletion_ssv} (attemptid, scoid, elementid, value, courseid, timemodified)
