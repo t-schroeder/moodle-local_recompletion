@@ -294,7 +294,7 @@ class check_recompletion extends \core\task\scheduled_task {
         $context = \context_course::instance($course->id);
 
         // Determine if user should be notified.
-        if ($config->recompletionemailenable) {
+        if (!empty($config->recompletionnotify)) {
             // If user has a completion record, notify user.
             if ($config->recompletionnotify == 'completed') {
                 $this->notify_user($userid, $course, $config);

@@ -64,23 +64,23 @@ if ($hassiteconfig) {
         new lang_string('recompletionrange', 'local_recompletion'),
         new lang_string('recompletionrange_help', 'local_recompletion'), YEARSECS, PARAM_INT));
 
-    $settings->add(new admin_setting_configcheckbox('local_recompletion/emailenable',
-        new lang_string('recompletionemailenable', 'local_recompletion'),
-        new lang_string('recompletionemailenable_help', 'local_recompletion'), 1));
-
-        $settings->add(new admin_setting_configselect('local_recompletion/recompletionnotify',
+    $settings->add(new admin_setting_configselect('local_recompletion/recompletionnotify',
         new lang_string('recompletionnotify', 'local_recompletion'),
         new lang_string('recompletionnotify_help', 'local_recompletion'), 'range', [
+            local_recompletion_recompletion_form::RECOMPLETION_NOTIFY_DISABLED => get_string(
+                'recompletiontype:disabled',
+                'local_recompletion',
+            ),
             local_recompletion_recompletion_form::RECOMPLETION_NOTIFY_COMPLETED_USERS => get_string(
                 'recompletionnotify:completed',
                 'local_recompletion',
             ),
-            local_recompletion_recompletion_form::RECOMPLETION_NOTIFY_ENROLLED_USERS => get_string(
-                'recompletionnotify:enrolled',
-                'local_recompletion',
-            ),
             local_recompletion_recompletion_form::RECOMPLETION_NOTIFY_ACTIVE_ENROLLED_USERS => get_string(
                 'recompletionnotify:activeenrolled',
+                'local_recompletion',
+            ),
+            local_recompletion_recompletion_form::RECOMPLETION_NOTIFY_ENROLLED_USERS => get_string(
+                'recompletionnotify:enrolled',
                 'local_recompletion',
             ),
         ]));

@@ -1064,5 +1064,24 @@ function xmldb_local_recompletion_upgrade($oldversion) {
         // Recompletion savepoint reached.
         upgrade_plugin_savepoint(true, 2024011601, 'local', 'recompletion');
     }
+
+    if ($oldversion < 2024051900) {
+        // Convert old recompletionemailenable setting to recompletionnotify.
+        $emailsettings = $DB->get_records('local_recompletion_config', ['name' => 'recompletionemailenable']);
+        foreach ($emailsettings as $esetting) {
+            if (empty($esetting->value)) {
+                // old value set to 0 now an empty string.
+                $esetting->value = '';
+            } else {
+                $esetting->value = 'completed';
+            }
+            $esetting->name = 'recompletionnotify';
+            $DB->update_record('local_recompletion_config', $esetting);
+        }
+
+        // Recompletion savepoint reached.
+        upgrade_plugin_savepoint(true, 2024051900, 'local', 'recompletion');
+
+    }
     return true;
 }
