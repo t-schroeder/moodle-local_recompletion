@@ -15,18 +15,24 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version details.
+ * Web service for local recompletion.
  *
  * @package    local_recompletion
- * @copyright  2017 Dan Marsden
+ * @author     Noémie Ariste <noemie.ariste@catalyst.net.nz>
+ * @copyright  2024 Catalyst IT
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die;
 
-$plugin->version   = 2023112703;
-$plugin->release   = 2023112703;
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->requires  = 2022112805; // Requires 4.1.
-$plugin->component = 'local_recompletion';
-$plugin->supported = [401, 402];
+$functions = [
+
+    'local_recompletion_reset_course' => [
+        'classname'     => 'local_recompletion_external',
+        'methodname'    => 'reset_course',
+        'classpath'     => 'local/recompletion/externallib.php',
+        'description'   => 'Reset course completion for a given course and user.',
+        'type'          => 'write',
+        'capabilities'  => 'local/recompletion:manage'
+    ],
+];
