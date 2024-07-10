@@ -122,7 +122,7 @@ class mod_quiz {
                 }
                 $DB->insert_records('local_recompletion_qg', $quizgrades);
             }
-            if ($config->resetquizoverride) {
+            if (!empty($config->resetquizoverride)) {
                 $DB->delete_records_select('quiz_overrides', $selectsql, $params);
             }
             $DB->delete_records_select('quiz_attempts', $selectsql, $params);
